@@ -46,9 +46,7 @@ def simulate(population, I0, beta, gamma, vaccination_rate, days):
 S, I, R, V = simulate(population, initial_infected, beta, gamma, vaccination_rate, days)
 
 # -------------------- PLOT --------------------
-st.subheader("Population Dynamics")
-
-fig, ax = plt.subplots(figsize=(6, 4))  # smaller graph
+fig, ax = plt.subplots(figsize=(4, 2.5))  # even smaller
 
 ax.plot(S, label="Susceptible")
 ax.plot(I, label="Infected")
@@ -57,7 +55,7 @@ ax.plot(V, label="Vaccinated")
 
 ax.set_xlabel("Days")
 ax.set_ylabel("Population")
-ax.legend()
+ax.legend(fontsize=8)
 
 st.pyplot(fig, use_container_width=False)
 
