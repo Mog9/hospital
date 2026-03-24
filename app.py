@@ -48,16 +48,18 @@ S, I, R, V = simulate(population, initial_infected, beta, gamma, vaccination_rat
 # -------------------- PLOT --------------------
 st.subheader("Population Dynamics")
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(6, 4))  # smaller graph
+
 ax.plot(S, label="Susceptible")
 ax.plot(I, label="Infected")
 ax.plot(R, label="Recovered")
 ax.plot(V, label="Vaccinated")
+
 ax.set_xlabel("Days")
 ax.set_ylabel("Population")
 ax.legend()
 
-st.pyplot(fig)
+st.pyplot(fig, use_container_width=False)
 
 # -------------------- METRICS --------------------
 st.subheader("Key Metrics")
