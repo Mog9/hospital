@@ -45,19 +45,43 @@ def simulate(population, I0, beta, gamma, vaccination_rate, days):
 
 S, I, R, V = simulate(population, initial_infected, beta, gamma, vaccination_rate, days)
 
-# -------------------- PLOT --------------------
-fig, ax = plt.subplots(figsize=(4, 2.5))  # even smaller
+# -------------------- PLOTS --------------------
+st.subheader("Population Dynamics")
 
-ax.plot(S, label="Susceptible")
-ax.plot(I, label="Infected")
-ax.plot(R, label="Recovered")
-ax.plot(V, label="Vaccinated")
+col1, col2 = st.columns(2)
 
-ax.set_xlabel("Days")
-ax.set_ylabel("Population")
-ax.legend(fontsize=8)
+# --- Graph 1: SIR ---
+with col1:
+    st.markdown("**SIR Model**")
 
-st.pyplot(fig, use_container_width=False)
+    fig1, ax1 = plt.subplots(figsize=(4, 2.5))
+
+    ax1.plot(S, label="Susceptible")
+    ax1.plot(I, label="Infected")
+    ax1.plot(R, label="Recovered")
+
+    ax1.set_xlabel("Days")
+    ax1.set_ylabel("Population")
+    ax1.legend(fontsize=8)
+
+    st.pyplot(fig1, use_container_width=False)
+
+# --- Graph 2: Vaccination ---
+with col2:
+    st.markdown("**Vaccination Dynamics**")
+
+    non_vaccinated = S + I + R  # everyone not vaccinated
+
+    fig2, ax2 = plt.subplots(figsize=(4, 2.5))
+
+    ax2.plot(V, label="Vaccinated")
+    ax2.plot(non_vaccinated, label="Non-Vaccinated")
+
+    ax2.set_xlabel("Days")
+    ax2.set_ylabel("Population")
+    ax2.legend(fontsize=8)
+
+    st.pyplot(fig2, use_container_width=False)
 
 # -------------------- METRICS --------------------
 st.subheader("Key Metrics")
